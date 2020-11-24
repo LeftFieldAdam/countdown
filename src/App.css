@@ -1,5 +1,18 @@
+@font-face {
+  font-family: 'Covik Sans Mono_Regular';
+  src: url('./fonts/Covik_Sans_Mono-Regular.woff') format('woff'),
+    url('./fonts/Covik_Sans_Mono-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
 }
 
+@font-face {
+  font-family: 'Covik Sans Mono_Bold';
+  src: url('./fonts/Covik_Sans_Mono-Bold.woff') format('woff'),
+    url('./fonts/Covik_Sans_Mono-Bold.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
 
 body,
 html,
@@ -9,6 +22,7 @@ html,
 }
 
 .App {
+  font-family: 'Covik Sans Mono_Bold';
   color: #282c34;
   margin: auto;
   text-align: center;
