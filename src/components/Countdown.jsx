@@ -108,7 +108,7 @@ class Countdown extends React.Component {
 
         <div className="countdown-col">
           <div className="numbers">{this.addLeadingZeros(sec)}</div>
-          <div className="text">{this.formatText(sec, 'second')}</div>
+          <div className="text">seconds</div>
         </div>
       </div>
     );
