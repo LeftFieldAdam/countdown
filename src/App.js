@@ -2,14 +2,16 @@ import './App.css';
 import Countdown from './components/Countdown';
 
 function App() {
+  const date = 'December 24, 2020';
+
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>Countdown</h1>
-      </header>
       <div className="content">
-        <Countdown date='2020-12-24T00:00:00' />,
+        <Countdown date={date} />
       </div>
+      <h1>
+        until <span>Eric’s birthday</span> on <span>{date}</span>
+      </h1>
     </div>
   );
 }
