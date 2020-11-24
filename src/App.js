@@ -3,6 +3,7 @@ import Countdown from './components/Countdown';
 
 function App() {
   const date = 'December 24, 2020';
+  const eventName = 'Eric’s birthday';
 
   return (
     <div className="App">
@@ -10,7 +11,7 @@ function App() {
         <Countdown date={date} />
       </div>
       <h1>
-        until <span>Eric’s birthday</span> on <span>{date}</span>
+        until <span>{eventName}</span> on <span>{date}</span>
       </h1>
     </div>
   );
