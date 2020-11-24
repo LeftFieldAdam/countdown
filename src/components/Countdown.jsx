@@ -72,29 +72,30 @@ class Countdown extends React.Component {
   }
 
   render() {
-    const countDown = this.state;
+    const { days, hours, min, sec } = this.state;
+    const finalMinute = days < 1 && hours < 1 && min < 1;
 
     return (
-      <div className="Countdown">
-        <span className="countdown-col">
-          <strong>{this.addLeadingZeros(countDown.days)}</strong>
-          <span>{countDown.days === 1 ? 'Day' : 'Days'}</span>
-        </span>
+      <div className={`Countdown ${finalMinute ? 'red' : ''}`}>
+        <div className="countdown-col">
+          <div className="numbers">{this.addLeadingZeros(days)}</div>
+          <div className="text">{days === 1 ? 'day' : 'days'}</div>
+        </div>
 
-        <span className="countdown-col">
-          <strong>{this.addLeadingZeros(countDown.hours)}</strong>
-          <span>Hours</span>
-        </span>
+        <div className="countdown-col">
+          <div className="numbers">{this.addLeadingZeros(hours)}</div>
+          <div className="text">hours</div>
+        </div>
 
-        <span className="countdown-col">
-          <strong>{this.addLeadingZeros(countDown.min)}</strong>
-          <span>Min</span>
-        </span>
+        <div className="countdown-col">
+          <div className="numbers">{this.addLeadingZeros(min)}</div>
+          <div className="text">minutes</div>
+        </div>
 
-        <span className="countdown-col">
-          <strong>{this.addLeadingZeros(countDown.sec)}</strong>
-          <span>Sec</span>
-        </span>
+        <div className="countdown-col">
+          <div className="numbers">{this.addLeadingZeros(sec)}</div>
+          <div className="text">seconds</div>
+        </div>
       </div>
     );
   }
