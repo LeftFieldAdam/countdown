@@ -34,7 +34,6 @@ class Countdown extends React.Component {
       hours: 0,
       min: 0,
       sec: 0,
-      millisec: 0,
     };
 
     // calculate time difference between now and expected date
