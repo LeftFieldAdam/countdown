@@ -72,11 +72,18 @@ class Countdown extends React.Component {
   }
 
   render() {
-    const { days, hours, min, sec } = this.state;
-    const finalMinute = days < 1 && hours < 1 && min < 1;
+    const { years, days, hours, min, sec } = this.state;
+    const finalMinute = years < 1 && days < 1 && hours < 1 && min < 1;
 
     return (
       <div className={`Countdown ${finalMinute ? 'red' : ''}`}>
+        {years >= 1 && (
+          <div className="countdown-col">
+            <div className="numbers">{this.addLeadingZeros(years)}</div>
+            <div className="text">{this.formatText(years, 'year')}</div>
+          </div>
+        )}
+
         <div className="countdown-col">
           <div className="numbers">{this.addLeadingZeros(days)}</div>
           <div className="text">{days === 1 ? 'day' : 'days'}</div>
