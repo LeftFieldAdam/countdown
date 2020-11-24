@@ -8,15 +8,15 @@ The below component was designed to count down the days until our CTO's birthday
 
 * Pick an area of improvement to implement.
 
-  - I'll improve the JavaScript and UI (CSS).
+    - I'll improve the JavaScript and UI (CSS).
 
 * What would happen to the current code if the date were changed, the page layout was changed or the format was changed?
 
- - The Countdown component expects a date as a string that can be correctly parsed by JavaScript's Date object – changing the input might change the output of the countdown numbers that are rendered. For example, using "December 24, 2020" instead would not change the countdown, but using "2020-12-24" would.
+   - The Countdown component expects a date as a string that can be correctly parsed by JavaScript's Date object – changing the input might change the output of the countdown numbers that are rendered. For example, using "December 24, 2020" instead would not change the countdown, but using "2020-12-24" would.
 
- - Also, if no date is passed into the Countdown component, the Countdown won't work and will just show 00s. Since this is an app designed to countdown until a specific date, the CTO's birthday could be set as the default date within the Countdown component.
+   - Also, if no date is passed into the Countdown component, the Countdown won't work and will just show 00s. Since this is an app designed to countdown until a specific date, the CTO's birthday could be set as the default date within the Countdown component.
 
- - If the page layout is changed, the header's font-size is styled to be responsive, so will change slightly depending on the width of the viewport.
+   - If the page layout is changed, the header's font-size is styled to be responsive, so will change slightly depending on the width of the viewport.
 
 * Does the current implementation follow best practices for HTML, CSS, JS and React?
 
