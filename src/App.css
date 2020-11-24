@@ -18,13 +18,16 @@ body,
 html,
 #root {
   height: 100%;
-  display: grid;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .App {
+  width: 100%;
   font-family: 'Covik Sans Mono_Bold';
   color: #282c34;
-  margin: auto;
   text-align: center;
 }
 
@@ -34,4 +37,24 @@ h1 {
 
 h1 > span {
   border-bottom: 1px solid #282c34;
+}
+
+@media only screen and (max-width: 1024px) {
+  .content {
+    margin: auto 50px;
+  }
+
+  h1 {
+    font-size: calc(10px + 2vmin);
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .content {
+    margin: auto 10px;
+  }
+
+  h1 {
+    padding: 0 20px;
+  }
 }

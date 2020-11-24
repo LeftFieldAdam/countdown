@@ -1,16 +1,17 @@
 .Countdown {
   font-family: 'Covik Sans Mono_Regular';
-  display: inline-grid;
-  grid-auto-flow: column;
-  justify-items: center;
-  column-gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .countdown-col {
   background-color: #282c34;
   color: white;
   border-radius: 10px;
-  width: 250px;
+
+  flex: 0 0 250px;
+  margin: 10px;
 }
 
 .numbers {
@@ -27,4 +28,26 @@
 
 .red > .countdown-col > .numbers {
   color: #c70039;
+}
+
+@media only screen and (max-width: 1024px) {
+  .countdown-col {
+    flex: 0 0 calc(25% - 20px);
+  }
+
+  .numbers {
+    font-size: 96px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .numbers {
+    font-size: 72px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .countdown-col {
+    flex: 0 0 calc(50% - 40px);
+  }
 }
