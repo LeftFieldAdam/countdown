@@ -8,15 +8,15 @@ The below component was designed to count down the days until our CTO's birthday
 
 * Pick an area of improvement to implement.
 
-    - I'll improve the JavaScript and UI (CSS).
+    - I'll focus on improving the UI (CSS) and some JavaScript.
 
 * What would happen to the current code if the date were changed, the page layout was changed or the format was changed?
 
-   - The Countdown component expects a date as a string that can be correctly parsed by JavaScript's Date object – changing the input might change the output of the countdown numbers that are rendered. For example, using "December 24, 2020" instead would not change the countdown, but using "2020-12-24" would.
+   - The Countdown component expects a date as a string that can be correctly parsed by JavaScript's Date object – changing the input might change the output of the countdown numbers that are rendered. For example, using `"December 24, 2020"` instead would not change the countdown, but using `"2020-12-24"` would.
 
-   - Also, if no date is passed into the Countdown component, the Countdown won't work and will just show 00s. Since this is an app designed to countdown until a specific date, the CTO's birthday could be set as the default date within the Countdown component.
+   - Also, if no date is passed into the Countdown component, the countdown won't work and will just show 00s. Since this is an app designed to countdown until a specific date, the CTO's birthday could be set as the default date within the Countdown component.
 
-   - If the page layout is changed, the header's font-size is styled to be responsive, so will change slightly depending on the width of the viewport.
+   - If the page layout is changed, the header's `font-size` is styled to be responsive, so will change slightly depending on the width of the viewport.
 
 * Does the current implementation follow best practices for HTML, CSS, JS and React?
 
@@ -27,15 +27,18 @@ The below component was designed to count down the days until our CTO's birthday
   CSS
   - `App.css` should clean-up its unused styles (`.App-logo`, `.App-link`)
   - `Countdown.css (Line 2)`: `padding-right: 10px;` makes it so the content appears to be off-center (there's an extra 10px of whitespace on the right) of the countdown
+  - The numbers should be monospaced, and/or use `font-variant-numeric: tabular-nums;`
 
   JS
   - `Countdown.jsx` does a good job of extracting logic into well-named helper functions
   - using `clearInterval()` to clear `this.interval` in `componentWillUnmount()` is good!
   - `Countdown.jsx (Line 37)`: `timeLeft.millisec` is never used, and should be removed
   - `Countdown.jsx (Line 77)`: could destructure `this.state` to be more explicit about what data is required
+  - The countdown doesn't render years, even though they're calculted in `calculateCountdown()`.
 
   React
   - `App.js (Line 2)`: `Countdown.css` should be imported in `Countdown.jsx`, not in `App.js`
+  - The one test is currently failing.
 
 **Spice it up:** Let's be honest, this countdown could be a whole lot more exciting.
 
