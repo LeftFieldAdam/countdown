@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './../style/Countdown.css';
 
 class Countdown extends React.Component {
@@ -114,5 +115,13 @@ class Countdown extends React.Component {
     );
   }
 }
+
+Countdown.propTypes = {
+  date: PropTypes.string.isRequired,
+};
+
+Countdown.defaultProps = {
+  date: 'December 24, 2020',
+};
 
 export default Countdown;
