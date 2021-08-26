@@ -98,7 +98,7 @@ function Countdown({ targetDate, dateReached, theme }) {
           </Grid>
         </Grid>
       )}
-      {dateReached && (
+      {(dateReached || !timeRemaining) && (
         <Grid
           container
           style={{

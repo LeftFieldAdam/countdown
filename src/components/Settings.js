@@ -13,7 +13,6 @@ import {
 } from '@material-ui/core';
 
 import DateFnsUtils from '@date-io/date-fns';
-import { formatDate } from '../utils/FormatDate';
 
 import { saveDate, saveTheme } from '../utils/LocalStorage';
 import {
@@ -44,7 +43,6 @@ function Settings({
   updateTheme,
 }) {
   const [settingsOpen, setSettingsOpen] = useState(false);
-  const [settingsSaved, setSettingsSaved] = useState(false);
   const [themePickerOpen, setThemePickerOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState(currentTargetDate);
   const [selectedTheme, setSelectedTheme] = useState(currentTheme);

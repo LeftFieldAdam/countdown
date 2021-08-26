@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Countdown from './components/Countdown';
 import Settings from './components/Settings';
 
@@ -35,7 +35,7 @@ function App() {
     {
       name: 'New Years',
       id: 'new-years',
-      finishedText: 'Happy New Years!!',
+      finishedText: 'Happy New Year!!',
       backgroundImage: NewYearsBackground,
     },
     {
