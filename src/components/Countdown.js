@@ -1,6 +1,23 @@
 import React, { useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+
 import { useInterval } from '../utils/UseInterval';
 import { getTimeRemaining } from '../utils/GetTimeRemaining';
+import { Typography } from '@material-ui/core';
+
+import Background from '../static/images/background.jpg';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    minHeight: '100vh',
+    textAlign: 'center',
+    backgroundPosition: 'center center',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    background: `linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${Background})`,
+  },
+}));
 
 function Countdown({ targetDate }) {
   const [countdownDate, setCountdownDate] = useState(new Date(targetDate));
@@ -11,40 +28,38 @@ function Countdown({ targetDate }) {
     seconds: 0,
   });
 
+  const classes = useStyles();
+
   useInterval(() => {
     setTimeRemaining(getTimeRemaining(countdownDate));
   }, 1000);
 
   return (
-    <div>
-      <div className="countdown-wrapper">
-        <div className="time-section">
-          <div className="time">{timeRemaining.days || '0'}</div>
-          <small className="time-text">Days</small>
-        </div>
-        <div className="time-section">
-          <div className="time">:</div>
-        </div>
-        <div className="time-section">
-          <div className="time">{timeRemaining.hours || '00'}</div>
-          <small className="time-text">Hours</small>
-        </div>
-        <div className="time-section">
-          <div className="time">:</div>
-        </div>
-        <div className="time-section">
-          <div className="time">{timeRemaining.minutes || '00'}</div>
-          <small className="time-text">Minutes</small>
-        </div>
-        <div className="time-section">
-          <div className="time">:</div>
-        </div>
-        <div className="time-section">
-          <div className="time">{timeRemaining.seconds || '00'}</div>
-          <small className="time-text">Seconds</small>
-        </div>
-      </div>
-    </div>
+    <Grid
+      container
+      className={classes.root}
+      spacing={0}
+      direction="row"
+      alignItems="center"
+      justifyContent="center"
+    >
+      <Grid item xs={3}>
+        <Typography variant="h3">{timeRemaining.days || '0'}</Typography>
+        <Typography variant="h6">Days</Typography>
+      </Grid>
+      <Grid item xs={3}>
+        <Typography variant="h3">{timeRemaining.hours || '00'}</Typography>
+        <Typography variant="h6">Hours</Typography>
+      </Grid>
+      <Grid item xs={3}>
+        <Typography variant="h3">{timeRemaining.minutes || '00'}</Typography>
+        <Typography variant="h6">Minutes</Typography>
+      </Grid>
+      <Grid item xs={3}>
+        <Typography variant="h3">{timeRemaining.seconds || '00'}</Typography>
+        <Typography variant="h6">Seconds</Typography>
+      </Grid>
+    </Grid>
   );
 }
 
