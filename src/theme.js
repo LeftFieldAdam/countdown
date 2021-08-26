@@ -6,12 +6,13 @@ const theme = createTheme({
   palette: {
     text: {
       primary: '#FFFFFF',
+      secondary: '#000000',
     },
     primary: {
       main: '#ffffff',
     },
     secondary: {
-      main: '#ffffff',
+      main: '#000000',
     },
     error: {
       main: red.A400,

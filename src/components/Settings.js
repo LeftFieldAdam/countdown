@@ -1,0 +1,144 @@
+import { useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+
+import {
+  Collapse,
+  Divider,
+  Drawer,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+} from '@material-ui/core';
+
+import DateFnsUtils from '@date-io/date-fns';
+import { formatDate } from '../utils/FormatDate';
+
+import {
+  MuiPickersUtilsProvider,
+  KeyboardDatePicker,
+} from '@material-ui/pickers';
+
+import SettingsIcon from '@material-ui/icons/Settings';
+import StyleIcon from '@material-ui/icons/Style';
+import StarIcon from '@material-ui/icons/Star';
+import ExpandLessIcon from '@material-ui/icons/ExpandLess';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
+
+const useStyles = makeStyles((theme) => ({
+  settingsContainer: {
+    position: 'absolute',
+    bottom: '1rem',
+    right: '1rem',
+  },
+}));
+
+function Settings({
+  currentTargetDate,
+  currentTheme,
+  availableThemes,
+  updateTargetDate,
+  updateTheme,
+}) {
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const [settingsSaved, setSettingsSaved] = useState(false);
+  const [themePickerOpen, setThemePickerOpen] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(new Date(currentTargetDate));
+
+  const classes = useStyles();
+
+  const toggleDrawer = (open) => (event) => {
+    if (
+      event.type === 'keydown' &&
+      (event.key === 'Tab' || event.key === 'Shift')
+    ) {
+      return;
+    }
+    setSettingsOpen(open);
+  };
+
+  const toggleThemePicker = () => {
+    setThemePickerOpen(!themePickerOpen);
+  };
+
+  const handleDateChange = (date) => {
+    console.log(date);
+    updateTargetDate(formatDate(date));
+  };
+
+  const handleThemeChange = (theme) => {
+    updateTheme(theme);
+  };
+
+  return (
+    <div>
+      <div className={classes.settingsContainer}>
+        <SettingsIcon onClick={toggleDrawer(true)} />
+      </div>
+      <Drawer
+        anchor={'right'}
+        open={settingsOpen}
+        onClose={toggleDrawer(false)}
+      >
+        <List>
+          <ListItem button onClick={toggleThemePicker}>
+            <ListItemIcon>
+              <StyleIcon />
+            </ListItemIcon>
+            <ListItemText secondary="Countdown Theme" />
+            {themePickerOpen ? (
+              <ExpandLessIcon color="secondary" />
+            ) : (
+              <ExpandMoreIcon color="secondary" />
+            )}
+          </ListItem>
+          <Collapse in={themePickerOpen} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding color="secondary">
+              {availableThemes.map((theme, index) => (
+                <ListItem
+                  button
+                  className={classes.nested}
+                  key={theme.id}
+                  onClick={() => {
+                    handleThemeChange(theme);
+                  }}
+                >
+                  <ListItemIcon>
+                    {theme.id === currentTheme.id ? (
+                      <StarIcon />
+                    ) : (
+                      <StarBorderIcon />
+                    )}
+                  </ListItemIcon>
+                  <ListItemText secondary={theme.name} />
+                </ListItem>
+              ))}
+            </List>
+          </Collapse>
+        </List>
+        <Divider />
+
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <KeyboardDatePicker
+            disableToolbar
+            variant="inline"
+            format="MM/dd/yyyy"
+            margin="normal"
+            id="date-picker-inline"
+            inputVariant="filled"
+            label="Current Target Date"
+            value={currentTargetDate}
+            minDate={new Date()}
+            onChange={(date, value) => handleDateChange(value)}
+            KeyboardButtonProps={{
+              'aria-label': 'change date',
+            }}
+          />
+        </MuiPickersUtilsProvider>
+      </Drawer>
+    </div>
+  );
+}
+
+export default Settings;
