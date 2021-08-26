@@ -6,10 +6,16 @@ import { useInterval } from '../utils/UseInterval';
 import { getTimeRemaining } from '../utils/GetTimeRemaining';
 import { Typography } from '@material-ui/core';
 
+import Background from '../static/images/background.jpg';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     minHeight: '100vh',
     textAlign: 'center',
+    backgroundPosition: 'center center',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    background: `linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${Background})`,
   },
 }));
 
@@ -37,19 +43,19 @@ function Countdown({ targetDate }) {
       alignItems="center"
       justifyContent="center"
     >
-      <Grid item xs={12} md={3} alignContent="center">
+      <Grid item xs={3}>
         <Typography variant="h3">{timeRemaining.days || '0'}</Typography>
         <Typography variant="h6">Days</Typography>
       </Grid>
-      <Grid item xs={12} md={3}>
+      <Grid item xs={3}>
         <Typography variant="h3">{timeRemaining.hours || '00'}</Typography>
         <Typography variant="h6">Hours</Typography>
       </Grid>
-      <Grid item xs={12} md={3}>
+      <Grid item xs={3}>
         <Typography variant="h3">{timeRemaining.minutes || '00'}</Typography>
         <Typography variant="h6">Minutes</Typography>
       </Grid>
-      <Grid item xs={12} md={3}>
+      <Grid item xs={3}>
         <Typography variant="h3">{timeRemaining.seconds || '00'}</Typography>
         <Typography variant="h6">Seconds</Typography>
       </Grid>
