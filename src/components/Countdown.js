@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import useWindowSize from 'react-use/lib/useWindowSize';
+import Confetti from 'react-confetti';
 
 import { useInterval } from '../utils/UseInterval';
 import { getTimeRemaining } from '../utils/GetTimeRemaining';
@@ -46,6 +48,7 @@ function Countdown({ targetDate, dateReached, theme }) {
   }, 1000);
 
   const backgroundImage = theme.backgroundImage;
+  const { width, height } = useWindowSize();
 
   return (
     <>
@@ -113,6 +116,7 @@ function Countdown({ targetDate, dateReached, theme }) {
           alignItems="center"
           justifyContent="center"
         >
+          <Confetti width={width} height={height} />
           <Grid item xs={11}>
             <Typography variant="h3" color="secondary">
               {theme.finishedText}

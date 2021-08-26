@@ -26,6 +26,7 @@ import StarIcon from '@material-ui/icons/Star';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 
 const useStyles = makeStyles((theme) => ({
   settingsContainer: {
@@ -46,6 +47,7 @@ function Settings({
   const [themePickerOpen, setThemePickerOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState(currentTargetDate);
   const [selectedTheme, setSelectedTheme] = useState(currentTheme);
+  const [showConfirmation, setShowConfirmation] = useState(false);
 
   const classes = useStyles();
 
@@ -76,6 +78,10 @@ function Settings({
   const saveSettings = () => {
     saveDate(selectedDate);
     saveTheme(selectedTheme);
+    setShowConfirmation(true);
+    setTimeout(function () {
+      setShowConfirmation(false);
+    }, 3000);
   };
 
   return (
@@ -145,6 +151,16 @@ function Settings({
           />
         </MuiPickersUtilsProvider>
         <Divider />
+        {showConfirmation && (
+          <List>
+            <ListItem color="success">
+              <ListItemIcon>
+                <CheckCircleIcon />
+              </ListItemIcon>
+              <ListItemText primary="Settings Saved" />
+            </ListItem>
+          </List>
+        )}
         <Button
           onClick={() => {
             saveSettings();
