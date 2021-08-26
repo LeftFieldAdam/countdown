@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Countdown({ targetDate, dateReached, theme }) {
+function Countdown({ targetDate, dateReached, theme, dateInPast }) {
   const [countdownDate, setCountdownDate] = useState(new Date(targetDate));
   const [timeRemaining, setTimeRemaining] = useState({
     days: 0,
@@ -52,7 +52,7 @@ function Countdown({ targetDate, dateReached, theme }) {
 
   return (
     <>
-      {!dateReached && (
+      {!dateReached && !dateInPast && (
         <Grid
           container
           style={{
@@ -101,7 +101,7 @@ function Countdown({ targetDate, dateReached, theme }) {
           </Grid>
         </Grid>
       )}
-      {(dateReached || !timeRemaining) && (
+      {!dateInPast && (dateReached || !timeRemaining) && (
         <Grid
           container
           style={{
@@ -120,6 +120,28 @@ function Countdown({ targetDate, dateReached, theme }) {
           <Grid item xs={11}>
             <Typography variant="h3" color="secondary">
               {theme.finishedText}
+            </Typography>
+          </Grid>
+        </Grid>
+      )}
+      {dateInPast && (
+        <Grid
+          container
+          style={{
+            background:
+              'linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(' +
+              backgroundImage +
+              ')',
+          }}
+          className={classes.root}
+          spacing={0}
+          direction="row"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Grid item xs={11}>
+            <Typography variant="h3" color="secondary">
+              Countdown ended, select a new date in the settings panel!
             </Typography>
           </Grid>
         </Grid>
