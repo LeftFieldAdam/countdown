@@ -5,14 +5,14 @@ import { createTheme } from '@material-ui/core/styles';
 const theme = createTheme({
   palette: {
     text: {
-      primary: '#FFFFFF',
-      secondary: '#000000',
+      primary: '#000000',
+      secondary: '#FFFFFF',
     },
     primary: {
-      main: '#ffffff',
+      main: '#000000',
     },
     secondary: {
-      main: '#000000',
+      main: '#FFFFFF',
     },
     error: {
       main: red.A400,

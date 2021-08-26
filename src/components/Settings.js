@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 import {
+  Button,
   Collapse,
   Divider,
   Drawer,
@@ -14,6 +15,7 @@ import {
 import DateFnsUtils from '@date-io/date-fns';
 import { formatDate } from '../utils/FormatDate';
 
+import { saveDate, saveTheme } from '../utils/LocalStorage';
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
@@ -44,7 +46,8 @@ function Settings({
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [settingsSaved, setSettingsSaved] = useState(false);
   const [themePickerOpen, setThemePickerOpen] = useState(false);
-  const [selectedDate, setSelectedDate] = useState(new Date(currentTargetDate));
+  const [selectedDate, setSelectedDate] = useState(currentTargetDate);
+  const [selectedTheme, setSelectedTheme] = useState(currentTheme);
 
   const classes = useStyles();
 
@@ -63,18 +66,24 @@ function Settings({
   };
 
   const handleDateChange = (date) => {
-    console.log(date);
-    updateTargetDate(formatDate(date));
+    updateTargetDate(date);
+    setSelectedDate(date);
   };
 
   const handleThemeChange = (theme) => {
     updateTheme(theme);
+    setSelectedTheme(theme);
+  };
+
+  const saveSettings = () => {
+    saveDate(selectedDate);
+    saveTheme(selectedTheme);
   };
 
   return (
     <div>
       <div className={classes.settingsContainer}>
-        <SettingsIcon onClick={toggleDrawer(true)} />
+        <SettingsIcon onClick={toggleDrawer(true)} color="secondary" />
       </div>
       <Drawer
         anchor={'right'}
@@ -86,15 +95,15 @@ function Settings({
             <ListItemIcon>
               <StyleIcon />
             </ListItemIcon>
-            <ListItemText secondary="Countdown Theme" />
+            <ListItemText primary="Countdown Theme" />
             {themePickerOpen ? (
-              <ExpandLessIcon color="secondary" />
+              <ExpandLessIcon color="primary" />
             ) : (
-              <ExpandMoreIcon color="secondary" />
+              <ExpandMoreIcon color="primary" />
             )}
           </ListItem>
           <Collapse in={themePickerOpen} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding color="secondary">
+            <List component="div" disablePadding color="primary">
               {availableThemes.map((theme, index) => (
                 <ListItem
                   button
@@ -111,7 +120,7 @@ function Settings({
                       <StarBorderIcon />
                     )}
                   </ListItemIcon>
-                  <ListItemText secondary={theme.name} />
+                  <ListItemText primary={theme.name} />
                 </ListItem>
               ))}
             </List>
@@ -122,12 +131,13 @@ function Settings({
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <KeyboardDatePicker
             disableToolbar
-            variant="inline"
+            variant="dialog"
             format="MM/dd/yyyy"
-            margin="normal"
+            margin="dense"
             id="date-picker-inline"
             inputVariant="filled"
             label="Current Target Date"
+            style={{ color: 'black' }}
             value={currentTargetDate}
             minDate={new Date()}
             onChange={(date, value) => handleDateChange(value)}
@@ -136,6 +146,14 @@ function Settings({
             }}
           />
         </MuiPickersUtilsProvider>
+        <Divider />
+        <Button
+          onClick={() => {
+            saveSettings();
+          }}
+        >
+          Save Settings
+        </Button>
       </Drawer>
     </div>
   );

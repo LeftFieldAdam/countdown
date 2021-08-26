@@ -32,11 +32,21 @@ function Countdown({ targetDate, dateReached, theme }) {
   }, [targetDate]);
 
   useInterval(() => {
+    const _timeRemaining = getTimeRemaining(countdownDate);
+    if (
+      _timeRemaining.days === 0 &&
+      _timeRemaining.hours === 0 &&
+      _timeRemaining.minutes === 0 &&
+      _timeRemaining.seconds === 0
+    ) {
+      setTimeRemaining(false);
+    }
+
     setTimeRemaining(getTimeRemaining(countdownDate));
   }, 1000);
 
   const backgroundImage = theme.backgroundImage;
-  console.log(backgroundImage);
+
   return (
     <>
       {!dateReached && (
@@ -55,30 +65,48 @@ function Countdown({ targetDate, dateReached, theme }) {
           justifyContent="center"
         >
           <Grid item xs={3}>
-            <Typography variant="h3">{timeRemaining.days || '0'}</Typography>
-            <Typography variant="h6">Days</Typography>
+            <Typography variant="h3" color="secondary">
+              {timeRemaining.days || '0'}
+            </Typography>
+            <Typography variant="h6" color="secondary">
+              Days
+            </Typography>
           </Grid>
           <Grid item xs={3}>
-            <Typography variant="h3">{timeRemaining.hours || '00'}</Typography>
-            <Typography variant="h6">Hours</Typography>
+            <Typography variant="h3" color="secondary">
+              {timeRemaining.hours || '00'}
+            </Typography>
+            <Typography variant="h6" color="secondary">
+              Hours
+            </Typography>
           </Grid>
           <Grid item xs={3}>
-            <Typography variant="h3">
+            <Typography variant="h3" color="secondary">
               {timeRemaining.minutes || '00'}
             </Typography>
-            <Typography variant="h6">Minutes</Typography>
+            <Typography variant="h6" color="secondary">
+              Minutes
+            </Typography>
           </Grid>
           <Grid item xs={3}>
-            <Typography variant="h3">
+            <Typography variant="h3" color="secondary">
               {timeRemaining.seconds || '00'}
             </Typography>
-            <Typography variant="h6">Seconds</Typography>
+            <Typography variant="h6" color="secondary">
+              Seconds
+            </Typography>
           </Grid>
         </Grid>
       )}
       {dateReached && (
         <Grid
           container
+          style={{
+            background:
+              'linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(' +
+              backgroundImage +
+              ')',
+          }}
           className={classes.root}
           spacing={0}
           direction="row"
@@ -86,7 +114,9 @@ function Countdown({ targetDate, dateReached, theme }) {
           justifyContent="center"
         >
           <Grid item xs={11}>
-            <Typography variant="h3">{theme.finishedText}</Typography>
+            <Typography variant="h3" color="secondary">
+              {theme.finishedText}
+            </Typography>
           </Grid>
         </Grid>
       )}

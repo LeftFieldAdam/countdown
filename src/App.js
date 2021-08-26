@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Countdown from './components/Countdown';
 import Settings from './components/Settings';
 
@@ -8,17 +8,23 @@ import TechBackground from './static/images/tech-background.jpg';
 import AnniversaryBackground from './static/images/anniversary-background.jpg';
 
 import { datePast, dateToday } from './utils/DatePast';
+import { getSavedDate, getSavedTheme } from './utils/LocalStorage';
+
 function App() {
-  const [targetDate, setTargetDate] = useState('08/28/2021');
+  const [targetDate, setTargetDate] = useState(getSavedDate() || '08/28/2021');
   const [dateReached, setDateReached] = useState(
     dateToday(new Date(targetDate))
   );
-  const [theme, setTheme] = useState({
-    name: 'Birthday',
-    id: 'birthday',
-    finishedText: 'Happy Birthday!!',
-    backgroundImage: BirthdayBackground,
-  });
+  const [dateInPast, setDateInPast] = useState(datePast(new Date(targetDate)));
+  const [theme, setTheme] = useState(
+    getSavedTheme() || {
+      name: 'Birthday',
+      id: 'birthday',
+      finishedText: 'Happy Birthday!!',
+      backgroundImage: BirthdayBackground,
+    }
+  );
+
   const availableThemes = [
     {
       name: 'Birthday',
@@ -46,10 +52,11 @@ function App() {
     },
   ];
 
-  console.log(dateReached);
+  console.log(dateInPast);
   const updateTargetDate = function (newDate) {
     setTargetDate(newDate);
     setDateReached(dateToday(new Date(newDate)));
+    setDateInPast(datePast(new Date(newDate)));
   };
   const updateTheme = function (newTheme) {
     setTheme(newTheme);
@@ -60,6 +67,7 @@ function App() {
         targetDate={targetDate}
         theme={theme}
         dateReached={dateReached}
+        dateInPast={dateInPast}
       />
       <Settings
         currentTargetDate={targetDate}
