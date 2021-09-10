@@ -9,7 +9,7 @@ function App() {
         <h1>Countdown</h1>
       </header>
       <div className="content">
-        <Countdown date='2020-12-24T00:00:00' />,
+        <Countdown date='2021-12-24T00:00:00' />,
       </div>
     </div>
   );

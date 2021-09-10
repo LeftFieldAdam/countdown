@@ -80,25 +80,25 @@ class Countdown extends React.Component {
     return (
       <div className="flex justify-center">
         <div className="Countdown grid grid-flow-col gap-5 text-center auto-cols-max">
-          <span className={countdownBoxes}>
+          <div className={countdownBoxes}>
             <strong className={countdownFont}>{this.addLeadingZeros(countDown.days)}</strong>
             <span>{countDown.days === 1 ? 'Day' : 'Days'}</span>
-          </span>
+          </div>
 
-          <span className={countdownBoxes}>
+          <div className={countdownBoxes}>
             <strong className={countdownFont}>{this.addLeadingZeros(countDown.hours)}</strong>
             <span>Hours</span>
-          </span>
+          </div>
 
-          <span className={countdownBoxes}>
+          <div className={countdownBoxes}>
             <strong className={countdownFont}>{this.addLeadingZeros(countDown.min)}</strong>
             <span>Min</span>
-          </span>
+          </div>
 
-          <span className={countdownBoxes}>
+          <div className={countdownBoxes}>
             <strong className={countdownFont}>{this.addLeadingZeros(countDown.sec)}</strong>
             <span>Sec</span>
-          </span>
+          </div>
         </div>
       </div>
     );
