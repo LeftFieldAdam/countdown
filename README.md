@@ -13,7 +13,9 @@ The below component was designed to count down the days until our CTO's birthday
 **Do a critique:** The current implementation isn't perfect. How could it be improved?
 
 * Pick an area of improvement to implement.
+- I will do some additions and add some additional styles via Tailwind.css
 * What would happen to the current code if the date were changed, the page layout was changed or the format was changed?
+- Currently the birthday that is being passed is `2020-12-24T00:00:00` as a string to the Countdown component as `date`. this is causing the current countdown to be negative because it is passed that date. I changed it to `2021-12-24T00:00:00` to update the year.  it won't work if no date is passed down.
 * Does the current implementation follow best practices for HTML, CSS, JS and React?
 
 **Spice it up:** Let's be honest, this countdown could be a whole lot more exciting.
