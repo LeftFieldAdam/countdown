@@ -74,14 +74,15 @@ class Countdown extends React.Component {
 
   render() {
     const countDown = this.state;
-    const countdownBoxes = "countdown-col flex flex-col p-2 bg-neutral rounded-box text-neutral-content";
+    const countdownBoxes = "countdown-col flex flex-col p-2 bg-gray-50 border-2 rounded-md text-neutral-content mt-10 shadow-xl";
     const countdownFont = "font-mono text-5xl countdown";
+    const countdownFontZeroDate = "font-mono text-5xl countdown text-blue-500";
 
     return (
       <div className="flex justify-center">
         <div className="Countdown grid grid-flow-col gap-5 text-center auto-cols-max">
           <div className={countdownBoxes}>
-            <strong className={countdownFont}>{this.addLeadingZeros(countDown.days)}</strong>
+            <strong className={countdownFontZeroDate}>{this.addLeadingZeros(countDown.days)}</strong>
             <span>{countDown.days === 1 ? 'Day' : 'Days'}</span>
           </div>
 
