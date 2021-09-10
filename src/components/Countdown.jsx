@@ -29,8 +29,6 @@ class Countdown extends React.Component {
   calculateCountdown(endDate) {
     let diff = (Date.parse(new Date(endDate)) - Date.parse(new Date())) / 1000;
 
-    console.log("diff: ", diff);
-
     const timeLeft = {
       years: 0,
       days: 0,
@@ -39,6 +37,11 @@ class Countdown extends React.Component {
       sec: 0,
     };
 
+    if (diff === 0) {
+      this.setState({
+        isBirthday:true
+      });
+    }
     // calculate time difference between now and expected date
     if (diff >= (365.25 * 86400)) { // 365.25 * 24 * 60 * 60
       timeLeft.years = Math.floor(diff / (365.25 * 86400));
@@ -58,11 +61,6 @@ class Countdown extends React.Component {
     }
     timeLeft.sec = diff;
 
-    if (diff === 0) {
-      this.setState({
-        isBirthday:true
-      });
-    }
 
     return timeLeft;
   }
@@ -72,8 +70,11 @@ class Countdown extends React.Component {
   }
 
   addLeadingZeros(value) {
+    if (value < 0) {
+      return '00';
+    }
     value = String(value);
-    while (value.length < 2) {
+    if (value.length < 2) {
       value = '0' + value;
     }
     return value;
