@@ -88,17 +88,17 @@ class Countdown extends React.Component {
 
           <div className={countdownBoxes}>
             <strong className={countDown.days === 0 ? countdownFontZeroDate : countdownFont}>{this.addLeadingZeros(countDown.hours)}</strong>
-            <span>Hours</span>
+            <span>{countDown.hours === 1 ? 'Hour' : 'Hours'}</span>
           </div>
 
           <div className={countdownBoxes}>
             <strong className={countDown.days === 0 ? countdownFontZeroDate : countdownFont}>{this.addLeadingZeros(countDown.min)}</strong>
-            <span>Min</span>
+            <span>{countDown.min === 1 ? 'Min' : 'Mins'}</span>
           </div>
 
           <div className={countdownBoxes}>
             <strong className={countDown.days === 0 ? countdownFontZeroDate : countdownFont}>{this.addLeadingZeros(countDown.sec)}</strong>
-            <span>Sec</span>
+            <span>{countDown.sec === 1 ? 'Sec' : 'Secs'}</span>
           </div>
         </div>
       </div>
