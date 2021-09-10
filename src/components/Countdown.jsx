@@ -1,4 +1,5 @@
 import React from 'react';
+import Cake from './Cake';
 
 class Countdown extends React.Component {
   constructor(props) {
@@ -74,11 +75,18 @@ class Countdown extends React.Component {
 
   render() {
     const countDown = this.state;
-    const countdownBoxes = "countdown-col flex flex-col p-2 bg-gray-50 border-2 rounded-md text-neutral-content mt-10 shadow-xl";
+    const countdownBoxes = "countdown-col flex flex-col p-2 bg-gray-50 border-2 rounded-md text-neutral-content shadow-xl";
     const countdownFont = "font-mono text-5xl countdown";
     const countdownFontZeroDate = "font-mono text-5xl countdown text-blue-500";
 
     return (
+      <>
+      <Cake 
+        days={this.state.days}
+        hours={this.state.hours}
+        min={this.state.min}
+        sec={this.state.sec}
+      />
       <div className="flex justify-center">
         <div className="Countdown grid grid-flow-col gap-5 text-center auto-cols-max">
           <div className={countdownBoxes}>
@@ -110,6 +118,7 @@ class Countdown extends React.Component {
           </div>
         </div>
       </div>
+      </>
     );
   }
 }
