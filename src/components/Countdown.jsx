@@ -37,7 +37,6 @@ class Countdown extends React.Component {
       hours: 0,
       min: 0,
       sec: 0,
-      millisec: 0,
     };
 
     // calculate time difference between now and expected date
@@ -58,7 +57,7 @@ class Countdown extends React.Component {
       diff -= timeLeft.min * 60;
     }
     timeLeft.sec = diff;
-    
+
     if (diff === 0) {
       this.setState({
         isBirthday:true
