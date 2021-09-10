@@ -10,6 +10,7 @@ class Countdown extends React.Component {
       hours: 0,
       min: 0,
       sec: 0,
+      isBirthday: false,
     }
   }
 
@@ -27,6 +28,8 @@ class Countdown extends React.Component {
 
   calculateCountdown(endDate) {
     let diff = (Date.parse(new Date(endDate)) - Date.parse(new Date())) / 1000;
+
+    console.log("diff: ", diff);
 
     const timeLeft = {
       years: 0,
@@ -55,6 +58,12 @@ class Countdown extends React.Component {
       diff -= timeLeft.min * 60;
     }
     timeLeft.sec = diff;
+    
+    if (diff === 0) {
+      this.setState({
+        isBirthday:true
+      });
+    }
 
     return timeLeft;
   }
@@ -82,10 +91,7 @@ class Countdown extends React.Component {
     return (
       <>
       <Cake 
-        days={this.state.days}
-        hours={this.state.hours}
-        min={this.state.min}
-        sec={this.state.sec}
+        isBirthday={this.state.isBirthday}
       />
       <div className='flex justify-center'>
         <div className='Countdown grid grid-flow-col gap-5 text-center auto-cols-max'>
