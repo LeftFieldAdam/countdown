@@ -82,22 +82,22 @@ class Countdown extends React.Component {
       <div className="flex justify-center">
         <div className="Countdown grid grid-flow-col gap-5 text-center auto-cols-max">
           <div className={countdownBoxes}>
-            <strong className={countdownFontZeroDate}>{this.addLeadingZeros(countDown.days)}</strong>
+            <strong className={countDown.days === 0 ? countdownFontZeroDate : countdownFont}>{this.addLeadingZeros(countDown.days)}</strong>
             <span>{countDown.days === 1 ? 'Day' : 'Days'}</span>
           </div>
 
           <div className={countdownBoxes}>
-            <strong className={countdownFont}>{this.addLeadingZeros(countDown.hours)}</strong>
+            <strong className={countDown.days === 0 ? countdownFontZeroDate : countdownFont}>{this.addLeadingZeros(countDown.hours)}</strong>
             <span>Hours</span>
           </div>
 
           <div className={countdownBoxes}>
-            <strong className={countdownFont}>{this.addLeadingZeros(countDown.min)}</strong>
+            <strong className={countDown.days === 0 ? countdownFontZeroDate : countdownFont}>{this.addLeadingZeros(countDown.min)}</strong>
             <span>Min</span>
           </div>
 
           <div className={countdownBoxes}>
-            <strong className={countdownFont}>{this.addLeadingZeros(countDown.sec)}</strong>
+            <strong className={countDown.days === 0 ? countdownFontZeroDate : countdownFont}>{this.addLeadingZeros(countDown.sec)}</strong>
             <span>Sec</span>
           </div>
         </div>
