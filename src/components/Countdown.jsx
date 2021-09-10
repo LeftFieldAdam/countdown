@@ -70,30 +70,36 @@ class Countdown extends React.Component {
     return value;
   }
 
+  
+
   render() {
     const countDown = this.state;
+    const countdownBoxes = "countdown-col flex flex-col p-2 bg-neutral rounded-box text-neutral-content";
+    const countdownFont = "font-mono text-5xl countdown";
 
     return (
-      <div className="Countdown">
-        <span className="countdown-col">
-          <strong>{this.addLeadingZeros(countDown.days)}</strong>
-          <span>{countDown.days === 1 ? 'Day' : 'Days'}</span>
-        </span>
+      <div className="flex justify-center">
+        <div className="Countdown grid grid-flow-col gap-5 text-center auto-cols-max">
+          <span className={countdownBoxes}>
+            <strong className={countdownFont}>{this.addLeadingZeros(countDown.days)}</strong>
+            <span>{countDown.days === 1 ? 'Day' : 'Days'}</span>
+          </span>
 
-        <span className="countdown-col">
-          <strong>{this.addLeadingZeros(countDown.hours)}</strong>
-          <span>Hours</span>
-        </span>
+          <span className={countdownBoxes}>
+            <strong className={countdownFont}>{this.addLeadingZeros(countDown.hours)}</strong>
+            <span>Hours</span>
+          </span>
 
-        <span className="countdown-col">
-          <strong>{this.addLeadingZeros(countDown.min)}</strong>
-          <span>Min</span>
-        </span>
+          <span className={countdownBoxes}>
+            <strong className={countdownFont}>{this.addLeadingZeros(countDown.min)}</strong>
+            <span>Min</span>
+          </span>
 
-        <span className="countdown-col">
-          <strong>{this.addLeadingZeros(countDown.sec)}</strong>
-          <span>Sec</span>
-        </span>
+          <span className={countdownBoxes}>
+            <strong className={countdownFont}>{this.addLeadingZeros(countDown.sec)}</strong>
+            <span>Sec</span>
+          </span>
+        </div>
       </div>
     );
   }
